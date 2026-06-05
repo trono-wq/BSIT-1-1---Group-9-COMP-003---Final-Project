@@ -7,6 +7,11 @@ CREATE TABLE Roles
     role_name VARCHAR(100) NOT NULL
 );
 
+INSERT INTO Roles (role_name)
+VALUES
+('Admin'),
+('HR Manager / Admin');
+
 CREATE TABLE Users 
 (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
