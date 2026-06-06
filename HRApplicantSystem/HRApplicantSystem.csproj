@@ -108,6 +108,12 @@
     <Compile Include="Forms\HR\frmApplicantList.Designer.cs">
       <DependentUpon>frmApplicantList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\HR\frmApplicantReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HR\frmApplicantReview.Designer.cs">
+      <DependentUpon>frmApplicantReview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\HR\frmHRDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,24 @@
     <Compile Include="Forms\HR\frmHRLogin.Designer.cs">
       <DependentUpon>frmHRLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\HR\frmInterviewEvaluation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HR\frmInterviewEvaluation.Designer.cs">
+      <DependentUpon>frmInterviewEvaluation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HR\frmInterviewSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HR\frmInterviewSchedule.Designer.cs">
+      <DependentUpon>frmInterviewSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HR\frmScreening.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HR\frmScreening.Designer.cs">
+      <DependentUpon>frmScreening.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -128,11 +152,20 @@
     <EmbeddedResource Include="Forms\HR\frmApplicantList.resx">
       <DependentUpon>frmApplicantList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HR\frmApplicantReview.resx">
+      <DependentUpon>frmApplicantReview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\HR\frmHRDashboard.resx">
       <DependentUpon>frmHRDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HR\frmHRLogin.resx">
       <DependentUpon>frmHRLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HR\frmInterviewSchedule.resx">
+      <DependentUpon>frmInterviewSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HR\frmScreening.resx">
+      <DependentUpon>frmScreening.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

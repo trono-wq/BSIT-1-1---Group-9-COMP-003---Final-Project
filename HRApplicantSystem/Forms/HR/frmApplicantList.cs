@@ -84,9 +84,8 @@ namespace HRApplicantSystem.Forms.HR
             }
 
             int applicationId = Convert.ToInt32(dgvApplicants.SelectedRows[0].Cells["application_id"].Value);
-            MessageBox.Show("Opening review for Application ID: " + applicationId,
-                "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // TODO: Open frmApplicantReview later
+            frmApplicantReview review = new frmApplicantReview(applicationId);
+            review.Show();
         }
     }
 }
