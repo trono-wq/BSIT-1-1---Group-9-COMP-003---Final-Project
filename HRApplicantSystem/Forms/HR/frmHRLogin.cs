@@ -28,7 +28,7 @@ namespace HRApplicantSystem.Forms.HR
                 using (MySqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT user_id, role_id FROM Users WHERE email=@email AND password=@password";
+                    string query = "SELECT user_id, full_name, email, role_id FROM Users WHERE email=@email AND password=@password";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@password", password);
@@ -41,6 +41,13 @@ namespace HRApplicantSystem.Forms.HR
 
                         if (roleId == 2)
                         {
+                            int userId = reader.GetInt32("user_id");
+                            string fullName = reader.GetString("full_name");
+
+                            UserSession.SetUser(userId, fullName, email, roleId);
+
+                            AuditTrail.Log("Login", "HR Staff logged in", "frmHRLogin");
+
                             frmHRDashboard dashboard = new frmHRDashboard();
                             dashboard.Show();
                             this.Hide();

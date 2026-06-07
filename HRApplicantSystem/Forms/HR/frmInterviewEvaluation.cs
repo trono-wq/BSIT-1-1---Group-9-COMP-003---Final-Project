@@ -19,6 +19,7 @@ namespace HRApplicantSystem.Forms.HR
         {
             cmbResult.SelectedIndex = 0;
             LoadApplicantData();
+            AuditTrail.Log("Opened Interview Evaluation", "Application ID: " + _applicationId, "frmInterviewEvaluation");
         }
 
         private void LoadApplicantData()
@@ -81,7 +82,6 @@ namespace HRApplicantSystem.Forms.HR
                 {
                     conn.Open();
 
-                    // Save evaluation
                     string query = @"INSERT INTO InterviewEvaluations 
                         (application_id, interview_score, interview_remarks, 
                         interview_evaluation_result, recommendations) 
@@ -100,7 +100,6 @@ namespace HRApplicantSystem.Forms.HR
                     cmd.Parameters.AddWithValue("@recommendations", recommendations);
                     cmd.ExecuteNonQuery();
 
-                    // Update application status
                     string newStatus = result == "Pass" ? "For Final Review" : "Rejected";
                     string updateQuery = @"UPDATE Applications 
                         SET application_status = @status 
@@ -110,7 +109,6 @@ namespace HRApplicantSystem.Forms.HR
                     updateCmd.Parameters.AddWithValue("@applicationId", _applicationId);
                     updateCmd.ExecuteNonQuery();
 
-                    // Record in ApplicationStatusHistory
                     string historyQuery = @"INSERT INTO ApplicationStatusHistory 
                         (application_id, old_status, new_status) 
                         VALUES (@applicationId, 'For Interview', @newStatus)";
@@ -119,13 +117,14 @@ namespace HRApplicantSystem.Forms.HR
                     historyCmd.Parameters.AddWithValue("@newStatus", newStatus);
                     historyCmd.ExecuteNonQuery();
 
-                    // Update interview schedule status to Completed
                     string scheduleQuery = @"UPDATE InterviewSchedules 
                         SET status = 'Completed' 
                         WHERE application_id = @applicationId";
                     MySqlCommand scheduleCmd = new MySqlCommand(scheduleQuery, conn);
                     scheduleCmd.Parameters.AddWithValue("@applicationId", _applicationId);
                     scheduleCmd.ExecuteNonQuery();
+
+                    AuditTrail.Log("Saved Interview Evaluation", "Application ID: " + _applicationId + " | Score: " + score + " | Result: " + result + " | New Status: " + newStatus, "frmInterviewEvaluation");
 
                     MessageBox.Show("Evaluation saved! Status updated to: " + newStatus,
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

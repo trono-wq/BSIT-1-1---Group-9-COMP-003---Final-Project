@@ -20,6 +20,7 @@ namespace HRApplicantSystem.Forms.HR
         {
             LoadApplicantData();
             LoadDocuments();
+            AuditTrail.Log("Viewed Applicant Profile", "Application ID: " + _applicationId, "frmApplicantReview");
         }
 
         private void LoadApplicantData()
@@ -130,6 +131,8 @@ namespace HRApplicantSystem.Forms.HR
                         MySqlCommand historyCmd = new MySqlCommand(historyQuery, conn);
                         historyCmd.Parameters.AddWithValue("@applicationId", _applicationId);
                         historyCmd.ExecuteNonQuery();
+
+                        AuditTrail.Log("Locked Application", "Application ID: " + _applicationId + " locked for review", "frmApplicantReview");
 
                         MessageBox.Show("Application locked for review successfully!",
                             "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

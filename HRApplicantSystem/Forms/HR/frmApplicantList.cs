@@ -18,6 +18,7 @@ namespace HRApplicantSystem.Forms.HR
         {
             cmbStatus.SelectedIndex = 0;
             LoadApplicants();
+            AuditTrail.Log("Viewed Applicant List", "HR Staff opened the applicant list", "frmApplicantList");
         }
 
         private void LoadApplicants(string search = "", string status = "All")
@@ -55,7 +56,6 @@ namespace HRApplicantSystem.Forms.HR
                     adapter.Fill(dt);
                     dgvApplicants.DataSource = dt;
 
-                    // Hide application_id column
                     if (dgvApplicants.Columns["application_id"] != null)
                         dgvApplicants.Columns["application_id"].Visible = false;
                 }
@@ -72,6 +72,7 @@ namespace HRApplicantSystem.Forms.HR
             string search = txtSearch.Text.Trim();
             string status = cmbStatus.SelectedItem.ToString();
             LoadApplicants(search, status);
+            AuditTrail.Log("Searched Applicants", "Search: " + search + " | Status: " + status, "frmApplicantList");
         }
 
         private void btnReview_Click(object sender, EventArgs e)
@@ -84,6 +85,7 @@ namespace HRApplicantSystem.Forms.HR
             }
 
             int applicationId = Convert.ToInt32(dgvApplicants.SelectedRows[0].Cells["application_id"].Value);
+            AuditTrail.Log("Opened Applicant Review", "Application ID: " + applicationId, "frmApplicantList");
             frmApplicantReview review = new frmApplicantReview(applicationId);
             review.Show();
         }

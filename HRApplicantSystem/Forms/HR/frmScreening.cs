@@ -19,6 +19,7 @@ namespace HRApplicantSystem.Forms.HR
         {
             cmbResult.SelectedIndex = 0;
             LoadApplicantData();
+            AuditTrail.Log("Opened Screening", "Application ID: " + _applicationId, "frmScreening");
         }
 
         private void LoadApplicantData()
@@ -72,7 +73,6 @@ namespace HRApplicantSystem.Forms.HR
                 {
                     conn.Open();
 
-                    // Save screening result
                     string query = @"INSERT INTO ScreeningResults 
                         (application_id, screening_result, remarks) 
                         VALUES (@applicationId, @result, @remarks)
@@ -86,7 +86,6 @@ namespace HRApplicantSystem.Forms.HR
                     cmd.Parameters.AddWithValue("@remarks", remarks);
                     cmd.ExecuteNonQuery();
 
-                    // Update application status
                     string newStatus = result == "Qualified" ? "Shortlisted" : "Rejected";
                     string updateQuery = @"UPDATE Applications 
                         SET application_status = @status 
@@ -96,7 +95,6 @@ namespace HRApplicantSystem.Forms.HR
                     updateCmd.Parameters.AddWithValue("@applicationId", _applicationId);
                     updateCmd.ExecuteNonQuery();
 
-                    // Record in ApplicationStatusHistory
                     string historyQuery = @"INSERT INTO ApplicationStatusHistory 
                         (application_id, old_status, new_status) 
                         VALUES (@applicationId, 'Under Review', @newStatus)";
@@ -104,6 +102,8 @@ namespace HRApplicantSystem.Forms.HR
                     historyCmd.Parameters.AddWithValue("@applicationId", _applicationId);
                     historyCmd.Parameters.AddWithValue("@newStatus", newStatus);
                     historyCmd.ExecuteNonQuery();
+
+                    AuditTrail.Log("Saved Screening Result", "Application ID: " + _applicationId + " | Result: " + result + " | New Status: " + newStatus, "frmScreening");
 
                     MessageBox.Show("Screening result saved successfully! Status updated to: " + newStatus,
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -20,6 +20,7 @@ namespace HRApplicantSystem.Forms.HR
             cmbStatus.SelectedIndex = 0;
             LoadApplicantData();
             LoadInterviewTypes();
+            AuditTrail.Log("Opened Interview Schedule", "Application ID: " + _applicationId, "frmInterviewSchedule");
         }
 
         private void LoadApplicantData()
@@ -126,7 +127,6 @@ namespace HRApplicantSystem.Forms.HR
                     cmd.Parameters.AddWithValue("@status", cmbStatus.SelectedItem.ToString());
                     cmd.ExecuteNonQuery();
 
-                    // Update application status
                     string updateQuery = @"UPDATE Applications 
                         SET application_status = 'For Interview' 
                         WHERE application_id = @applicationId";
@@ -134,13 +134,14 @@ namespace HRApplicantSystem.Forms.HR
                     updateCmd.Parameters.AddWithValue("@applicationId", _applicationId);
                     updateCmd.ExecuteNonQuery();
 
-                    // Record in ApplicationStatusHistory
                     string historyQuery = @"INSERT INTO ApplicationStatusHistory 
                         (application_id, old_status, new_status) 
                         VALUES (@applicationId, 'Shortlisted', 'For Interview')";
                     MySqlCommand historyCmd = new MySqlCommand(historyQuery, conn);
                     historyCmd.Parameters.AddWithValue("@applicationId", _applicationId);
                     historyCmd.ExecuteNonQuery();
+
+                    AuditTrail.Log("Saved Interview Schedule", "Application ID: " + _applicationId + " | Date: " + dtpInterviewDate.Value.ToString("yyyy-MM-dd HH:mm") + " | Location: " + txtModeLocation.Text.Trim(), "frmInterviewSchedule");
 
                     MessageBox.Show("Interview scheduled successfully!",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
