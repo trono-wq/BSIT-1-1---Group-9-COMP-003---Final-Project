@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -18,6 +19,7 @@ namespace HRApplicantSystem.Forms.HR
         private void frmApplicantReview_Load(object sender, EventArgs e)
         {
             LoadApplicantData();
+            LoadDocuments();
         }
 
         private void LoadApplicantData()
@@ -69,6 +71,37 @@ namespace HRApplicantSystem.Forms.HR
             }
         }
 
+        private void LoadDocuments()
+        {
+            try
+            {
+                using (MySqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"SELECT 
+                        rt.requirement_type_name AS 'Document Type',
+                        ad.document_status AS 'Status',
+                        ad.o_document_uploaded_at AS 'Uploaded At'
+                        FROM ApplicantDocuments ad
+                        JOIN RequirementTypes rt ON ad.requirement_type_id = rt.requirement_type_id
+                        WHERE ad.application_id = @applicationId";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@applicationId", _applicationId);
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dgvDocuments.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading documents: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnLockReview_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -83,7 +116,6 @@ namespace HRApplicantSystem.Forms.HR
                     {
                         conn.Open();
 
-                        // Update application status and lock
                         string query = @"UPDATE Applications 
                             SET application_status = 'Under Review', 
                             locked = TRUE 
@@ -92,7 +124,6 @@ namespace HRApplicantSystem.Forms.HR
                         cmd.Parameters.AddWithValue("@applicationId", _applicationId);
                         cmd.ExecuteNonQuery();
 
-                        // Record in ApplicationStatusHistory
                         string historyQuery = @"INSERT INTO ApplicationStatusHistory 
                             (application_id, old_status, new_status) 
                             VALUES (@applicationId, 'Submitted', 'Under Review')";
