@@ -8,7 +8,7 @@ namespace HRApplicantProcessingSystem
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new MaintenanceHub()); 
+            Application.Run(new HiringDecisionForm());
         }
     }
 } 
