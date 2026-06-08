@@ -9,8 +9,8 @@ CREATE TABLE Roles
 
 INSERT INTO Roles (role_name)
 VALUES
-('HR Staff'),
-('HR Manager / Admin');
+('HR Manager / Admin')
+('HR STAFF');
 
 CREATE TABLE Users 
 (
