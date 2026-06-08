@@ -1,5 +1,3 @@
-using HRApplicantProcessingSystem;
-using HRApplicantProcessingSystem;
 using System.Windows.Forms;
 
 namespace HRApplicantProcessingSystem
@@ -9,8 +7,8 @@ namespace HRApplicantProcessingSystem
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize(); 
-            Application.Run(new DepartmentForm());
+            ApplicationConfiguration.Initialize();
+            Application.Run(new EmploymentTypeForm());
         }
     }
 }

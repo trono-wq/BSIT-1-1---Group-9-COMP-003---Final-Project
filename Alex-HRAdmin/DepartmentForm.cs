@@ -22,9 +22,10 @@ namespace HRApplicantProcessingSystem
         private void DepartmentForm_Load(object sender, EventArgs e)
         {
             LoadDepartments();
+            dgvDepartments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        // =================== SECTION 26.3: ( LOAD DEPARTMENTS FROM DATABASE ) =================== //
+        // =================== SECTION 26.3: ( LOAD DEPARTMENTS FROM DATABASE ) =========================================== //
         private void LoadDepartments()
         {
             MySqlConnection conn = DBConnection.GetConnection();
@@ -37,13 +38,18 @@ namespace HRApplicantProcessingSystem
             conn.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
 
+        // =================== SECTION 26.4: ( ADD DEPARTMENT ) =================================================================== //
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
+            if (txtDepartmentName.Text == "")
+            {
+                MessageBox.Show("Please enter a department name!");
+                return;
+            }
+
             MySqlConnection conn = DBConnection.GetConnection();
             conn.Open();
             string query = "INSERT INTO Departments (department_name) VALUES (@name)";
@@ -55,6 +61,59 @@ namespace HRApplicantProcessingSystem
             MessageBox.Show("Department added successfully!");
             txtDepartmentName.Text = "";
             LoadDepartments();
+        }
+        // =================== SECTION 26.5: ( EDIT DEPARTMENT ) ========================================================= //
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (dgvDepartments.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a department to edit!");
+                return;
+            }
+            if (txtDepartmentName.Text == "")
+            {
+                MessageBox.Show("Please enter a new department name!");
+                return;
+            }
+            int id = Convert.ToInt32(dgvDepartments.SelectedRows[0].Cells["department_id"].Value);
+            MySqlConnection conn = DBConnection.GetConnection();
+            conn.Open();
+            string query = "UPDATE Departments SET department_name = @name WHERE department_id = @id";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@name", txtDepartmentName.Text);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            MessageBox.Show("Department updated successfully!");
+            txtDepartmentName.Text = "";
+            LoadDepartments();
+
+        }
+
+        // =================== SECTION 26.6: ( DELETE DEPARTMENT ) ===================================================== //
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvDepartments.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a department to delete!");
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show("Are you sure you want to delete this department?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                int id = Convert.ToInt32(dgvDepartments.SelectedRows[0].Cells["department_id"].Value);
+                MySqlConnection conn = DBConnection.GetConnection();
+                conn.Open();
+                string query = "DELETE FROM Departments WHERE department_id = @id";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Department deleted successfully!");
+                LoadDepartments();
+            }
         }
     }
 }

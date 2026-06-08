@@ -1,6 +1,6 @@
 ﻿namespace HRApplicantProcessingSystem
 {
-    partial class DepartmentForm
+    partial class PositionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            txtDepartmentName = new TextBox();
+            txtPositionName = new TextBox();
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
-            dgvDepartments = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dgvDepartments).BeginInit();
+            dgvPositions = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvPositions).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(102, 63);
+            label1.Location = new Point(108, 68);
             label1.Name = "label1";
-            label1.Size = new Size(163, 25);
+            label1.Size = new Size(131, 25);
             label1.TabIndex = 0;
-            label1.Text = "Department Name:";
+            label1.Text = "Position Name:";
             // 
-            // txtDepartmentName
+            // txtPositionName
             // 
-            txtDepartmentName.Location = new Point(271, 66);
-            txtDepartmentName.Name = "txtDepartmentName";
-            txtDepartmentName.Size = new Size(743, 31);
-            txtDepartmentName.TabIndex = 1;
+            txtPositionName.Location = new Point(245, 68);
+            txtPositionName.Name = "txtPositionName";
+            txtPositionName.Size = new Size(866, 31);
+            txtPositionName.TabIndex = 1;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(1020, 63);
+            btnAdd.Location = new Point(1117, 68);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(112, 34);
             btnAdd.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(1020, 103);
+            btnEdit.Location = new Point(1117, 105);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(112, 34);
             btnEdit.TabIndex = 3;
@@ -75,7 +75,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(1020, 143);
+            btnDelete.Location = new Point(1117, 145);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(112, 34);
             btnDelete.TabIndex = 4;
@@ -83,31 +83,31 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
-            // dgvDepartments
+            // dgvPositions
             // 
-            dgvDepartments.AllowUserToAddRows = false;
-            dgvDepartments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDepartments.Location = new Point(271, 103);
-            dgvDepartments.Name = "dgvDepartments";
-            dgvDepartments.ReadOnly = true;
-            dgvDepartments.RowHeadersWidth = 62;
-            dgvDepartments.Size = new Size(743, 474);
-            dgvDepartments.TabIndex = 5;
+            dgvPositions.AllowUserToAddRows = false;
+            dgvPositions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPositions.Location = new Point(245, 105);
+            dgvPositions.Name = "dgvPositions";
+            dgvPositions.ReadOnly = true;
+            dgvPositions.RowHeadersWidth = 62;
+            dgvPositions.Size = new Size(866, 461);
+            dgvPositions.TabIndex = 5;
             // 
-            // DepartmentForm
+            // PositionForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1270, 726);
-            Controls.Add(dgvDepartments);
+            ClientSize = new Size(1349, 725);
+            Controls.Add(dgvPositions);
             Controls.Add(btnDelete);
             Controls.Add(btnEdit);
             Controls.Add(btnAdd);
-            Controls.Add(txtDepartmentName);
+            Controls.Add(txtPositionName);
             Controls.Add(label1);
-            Name = "DepartmentForm";
-            Text = "Department Management";
-            ((System.ComponentModel.ISupportInitialize)dgvDepartments).EndInit();
+            Name = "PositionForm";
+            Text = "Position Management";
+            ((System.ComponentModel.ISupportInitialize)dgvPositions).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -115,10 +115,10 @@
         #endregion
 
         private Label label1;
-        private TextBox txtDepartmentName;
+        private TextBox txtPositionName;
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
-        private DataGridView dgvDepartments;
+        private DataGridView dgvPositions;
     }
 }
