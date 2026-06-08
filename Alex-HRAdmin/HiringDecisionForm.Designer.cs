@@ -77,7 +77,8 @@ namespace HRApplicantProcessingSystem
             btnSubmitDecision.TabIndex = 6;
             btnSubmitDecision.Text = "Submit Decision";
             btnSubmitDecision.UseVisualStyleBackColor = true;
-            
+            btnSubmitDecision.Click += btnSubmitDecision_Click;
+
 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
