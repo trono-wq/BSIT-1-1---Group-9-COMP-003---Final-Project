@@ -44,6 +44,8 @@
             lblDraft = new Label();
             btnEditApplication = new Button();
             btnSubmitApplication = new Button();
+            lblRejected = new Label();
+            lblWithdrawn = new Label();
             grpApplication.SuspendLayout();
             SuspendLayout();
             // 
@@ -95,6 +97,8 @@
             // 
             // grpApplication
             // 
+            grpApplication.Controls.Add(lblWithdrawn);
+            grpApplication.Controls.Add(lblRejected);
             grpApplication.Controls.Add(lblForFinalReview);
             grpApplication.Controls.Add(lblAccepted);
             grpApplication.Controls.Add(lblForAssessment);
@@ -105,7 +109,7 @@
             grpApplication.Controls.Add(lblDraft);
             grpApplication.Location = new Point(30, 248);
             grpApplication.Name = "grpApplication";
-            grpApplication.Size = new Size(300, 389);
+            grpApplication.Size = new Size(300, 397);
             grpApplication.TabIndex = 5;
             grpApplication.TabStop = false;
             grpApplication.Text = "Application Progress ";
@@ -113,7 +117,7 @@
             // lblForFinalReview
             // 
             lblForFinalReview.AutoSize = true;
-            lblForFinalReview.Location = new Point(18, 288);
+            lblForFinalReview.Location = new Point(18, 264);
             lblForFinalReview.Name = "lblForFinalReview";
             lblForFinalReview.Size = new Size(159, 25);
             lblForFinalReview.TabIndex = 10;
@@ -122,7 +126,7 @@
             // lblAccepted
             // 
             lblAccepted.AutoSize = true;
-            lblAccepted.Location = new Point(18, 336);
+            lblAccepted.Location = new Point(20, 298);
             lblAccepted.Name = "lblAccepted";
             lblAccepted.Size = new Size(107, 25);
             lblAccepted.TabIndex = 11;
@@ -131,16 +135,17 @@
             // lblForAssessment
             // 
             lblForAssessment.AutoSize = true;
-            lblForAssessment.Location = new Point(18, 244);
+            lblForAssessment.Location = new Point(18, 228);
             lblForAssessment.Name = "lblForAssessment";
             lblForAssessment.Size = new Size(158, 25);
             lblForAssessment.TabIndex = 5;
             lblForAssessment.Text = "○ For Assessment";
+            lblForAssessment.Click += lblForAssessment_Click;
             // 
             // lblForInterview
             // 
             lblForInterview.AutoSize = true;
-            lblForInterview.Location = new Point(18, 200);
+            lblForInterview.Location = new Point(18, 189);
             lblForInterview.Name = "lblForInterview";
             lblForInterview.Size = new Size(135, 25);
             lblForInterview.TabIndex = 4;
@@ -149,7 +154,7 @@
             // lblShortlisted
             // 
             lblShortlisted.AutoSize = true;
-            lblShortlisted.Location = new Point(18, 162);
+            lblShortlisted.Location = new Point(20, 153);
             lblShortlisted.Name = "lblShortlisted";
             lblShortlisted.Size = new Size(118, 25);
             lblShortlisted.TabIndex = 3;
@@ -158,7 +163,7 @@
             // lblUnderReview
             // 
             lblUnderReview.AutoSize = true;
-            lblUnderReview.Location = new Point(18, 121);
+            lblUnderReview.Location = new Point(19, 116);
             lblUnderReview.Name = "lblUnderReview";
             lblUnderReview.Size = new Size(140, 25);
             lblUnderReview.TabIndex = 2;
@@ -167,7 +172,7 @@
             // lblSubmitted
             // 
             lblSubmitted.AutoSize = true;
-            lblSubmitted.Location = new Point(18, 79);
+            lblSubmitted.Location = new Point(19, 75);
             lblSubmitted.Name = "lblSubmitted";
             lblSubmitted.Size = new Size(125, 25);
             lblSubmitted.TabIndex = 1;
@@ -201,6 +206,24 @@
             btnSubmitApplication.Text = "Submit Application";
             btnSubmitApplication.UseVisualStyleBackColor = true;
             btnSubmitApplication.Click += btnSubmitApplication_Click;
+            // 
+            // lblRejected
+            // 
+            lblRejected.AutoSize = true;
+            lblRejected.Location = new Point(19, 333);
+            lblRejected.Name = "lblRejected";
+            lblRejected.Size = new Size(99, 25);
+            lblRejected.TabIndex = 12;
+            lblRejected.Text = "○ Rejected";
+            // 
+            // lblWithdrawn
+            // 
+            lblWithdrawn.AutoSize = true;
+            lblWithdrawn.Location = new Point(19, 367);
+            lblWithdrawn.Name = "lblWithdrawn";
+            lblWithdrawn.Size = new Size(119, 25);
+            lblWithdrawn.TabIndex = 13;
+            lblWithdrawn.Text = "○ Withdrawn";
             // 
             // FrmMyApplication
             // 
@@ -243,5 +266,7 @@
         private Button btnSubmitApplication;
         private Label lblForFinalReview;
         private Label lblAccepted;
+        private Label lblRejected;
+        private Label lblWithdrawn;
     }
 }

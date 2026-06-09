@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HRApplicantSystemUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+559c3984be8be38efd4f5278b50c9cf774706471")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1573215ea5b303dc6838ad3a5b072b14ce22bf15")]
 [assembly: System.Reflection.AssemblyProductAttribute("HRApplicantSystemUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HRApplicantSystemUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -24,5 +24,10 @@ namespace HRApplicantSystemUI
         {
             MessageBox.Show("Application Editing Opened.");
         }
+
+        private void lblForAssessment_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
