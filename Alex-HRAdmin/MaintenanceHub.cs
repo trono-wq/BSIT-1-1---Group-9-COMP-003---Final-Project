@@ -52,5 +52,19 @@ namespace HRApplicantProcessingSystem
             AssessmentTypeForm form = new AssessmentTypeForm();
             form.ShowDialog();
         }
+
+        // =================== OPEN HIRING DECISION FORM =============================================================== //
+        private void btnHiringDecision_Click(object sender, EventArgs e)
+        {
+            HiringDecisionForm form = new HiringDecisionForm();
+            form.ShowDialog();
+        }
+
+        // =================== OPEN REPORTS FORM ======================================================================= //
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            ReportsForm form = new ReportsForm();
+            form.ShowDialog();
+        }
     }
 }

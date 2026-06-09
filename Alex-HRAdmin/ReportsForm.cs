@@ -18,10 +18,10 @@ namespace HRApplicantProcessingSystem
         private void ReportsForm_Load(object sender, EventArgs e)
         {
             dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            cmbReportType.Items.Add("All Applicants");
-            cmbReportType.Items.Add("Accepted Applicants");
-            cmbReportType.Items.Add("Rejected Applicants");
+            cmbReportType.Items.Add("Applicant List");
+            cmbReportType.Items.Add("Pending Applications");
             cmbReportType.Items.Add("Interviews");
+            cmbReportType.Items.Add("Accepted / Rejected");
             cmbReportType.Items.Add("Missing Requirements");
             cmbReportType.SelectedIndex = 0;
         }
@@ -30,16 +30,14 @@ namespace HRApplicantProcessingSystem
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
             string selected = cmbReportType.SelectedItem.ToString();
-
-            if (selected == "All Applicants") LoadAllApplicants();
-            else if (selected == "Accepted Applicants") LoadAcceptedApplicants();
-            else if (selected == "Rejected Applicants") LoadRejectedApplicants();
+            if (selected == "Applicant List") LoadApplicantList();
+            else if (selected == "Pending Applications") LoadPendingApplications();
             else if (selected == "Interviews") LoadInterviews();
+            else if (selected == "Accepted / Rejected") LoadAcceptedRejected();
             else if (selected == "Missing Requirements") LoadMissingRequirements();
-
         }
         // ======= SECTION 23.4: ( ALL APPLICANTS REPORT ) ======================================================================= //
-        private void LoadAllApplicants()
+        private void LoadApplicantList()
         {
             try
             {
@@ -60,19 +58,18 @@ namespace HRApplicantProcessingSystem
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        // ======= SECTION 23.5: ( ACCEPTED APPLICANTS REPORT ) ================================================================= //
-        private void LoadAcceptedApplicants()
+        // ======= SECTION 23.5: ( PENDING APPLICATIONS REPORT ) ================================================================= //
+        private void LoadPendingApplications()
         {
             try
             {
                 MySqlConnection conn = DBConnection.GetConnection();
                 conn.Open();
-                string query = @"SELECT a.pi_full_name, jv.position, hd.final_decision, hd.final_remarks
-                        FROM Applicants a
-                        JOIN Applications ap ON a.applicant_id = ap.applicant_id
-                        JOIN JobVacancies jv ON ap.job_vacancy_id = jv.job_vacancy_id
-                        JOIN HiringDecisions hd ON ap.application_id = hd.application_id
-                        WHERE hd.final_decision = 'Accepted'";
+                string query = @"SELECT a.pi_full_name, jv.position, ap.application_status
+        FROM Applicants a
+        JOIN Applications ap ON a.applicant_id = ap.applicant_id
+        JOIN JobVacancies jv ON ap.job_vacancy_id = jv.job_vacancy_id
+        WHERE ap.application_status NOT IN ('Accepted','Rejected','Withdrawn')";
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -85,8 +82,8 @@ namespace HRApplicantProcessingSystem
             }
         }
 
-        // ======= SECTION 23.6: ( REJECTED APPLICANTS REPORT ) ================================================================ //
-        private void LoadRejectedApplicants()
+        // ======= SECTION 23.6: ( ACCEPTED / REJECTED REPORT ) ================================================================ //
+        private void LoadAcceptedRejected()
         {
             try
             {
@@ -97,7 +94,7 @@ namespace HRApplicantProcessingSystem
                         JOIN Applications ap ON a.applicant_id = ap.applicant_id
                         JOIN JobVacancies jv ON ap.job_vacancy_id = jv.job_vacancy_id
                         JOIN HiringDecisions hd ON ap.application_id = hd.application_id
-                        WHERE hd.final_decision = 'Rejected'";
+                        WHERE hd.final_decision IN ('Accepted','Rejected')";
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);

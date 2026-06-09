@@ -35,6 +35,8 @@
             btnRequirementTypes = new Button();
             btnInterviewTypes = new Button();
             btnAssessmentTypes = new Button();
+            btnHiringDecision = new Button();
+            btnReports = new Button();
             SuspendLayout();
             // 
             // label1
@@ -55,7 +57,6 @@
             btnDepartments.Text = "Departments";
             btnDepartments.UseVisualStyleBackColor = true;
             btnDepartments.Click += btnDepartments_Click;
-          
             // 
             // btnPositions
             // 
@@ -66,7 +67,6 @@
             btnPositions.Text = "Positions";
             btnPositions.UseVisualStyleBackColor = true;
             btnPositions.Click += btnPositions_Click;
-
             // 
             // btnEmploymentTypes
             // 
@@ -77,7 +77,6 @@
             btnEmploymentTypes.Text = "Employment Types";
             btnEmploymentTypes.UseVisualStyleBackColor = true;
             btnEmploymentTypes.Click += btnEmploymentTypes_Click;
-
             // 
             // btnRequirementTypes
             // 
@@ -88,7 +87,6 @@
             btnRequirementTypes.Text = "Requirement Types";
             btnRequirementTypes.UseVisualStyleBackColor = true;
             btnRequirementTypes.Click += btnRequirementTypes_Click;
-
             // 
             // btnInterviewTypes
             // 
@@ -99,7 +97,6 @@
             btnInterviewTypes.Text = "Interview Types";
             btnInterviewTypes.UseVisualStyleBackColor = true;
             btnInterviewTypes.Click += btnInterviewTypes_Click;
-
             // 
             // btnAssessmentTypes
             // 
@@ -110,13 +107,34 @@
             btnAssessmentTypes.Text = "Assessment Types";
             btnAssessmentTypes.UseVisualStyleBackColor = true;
             btnAssessmentTypes.Click += btnAssessmentTypes_Click;
-
+            // 
+            // btnHiringDecision
+            // 
+            btnHiringDecision.Location = new Point(581, 315);
+            btnHiringDecision.Name = "btnHiringDecision";
+            btnHiringDecision.Size = new Size(270, 34);
+            btnHiringDecision.TabIndex = 7;
+            btnHiringDecision.Text = "Hiring Decision";
+            btnHiringDecision.UseVisualStyleBackColor = true;
+            btnHiringDecision.Click += btnHiringDecision_Click;
+            // 
+            // btnReports
+            // 
+            btnReports.Location = new Point(581, 355);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(270, 34);
+            btnReports.TabIndex = 8;
+            btnReports.Text = "Reports";
+            btnReports.UseVisualStyleBackColor = true;
+            btnReports.Click += btnReports_Click;
             // 
             // MaintenanceHub
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1461, 708);
+            Controls.Add(btnReports);
+            Controls.Add(btnHiringDecision);
             Controls.Add(btnAssessmentTypes);
             Controls.Add(btnInterviewTypes);
             Controls.Add(btnRequirementTypes);
@@ -139,5 +157,7 @@
         private Button btnRequirementTypes;
         private Button btnInterviewTypes;
         private Button btnAssessmentTypes;
+        private Button btnHiringDecision;
+        private Button btnReports;
     }
 }
