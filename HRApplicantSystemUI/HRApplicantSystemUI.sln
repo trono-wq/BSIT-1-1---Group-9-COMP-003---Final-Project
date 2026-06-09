@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRApplicantSystemUI", "HRApplicantSystemUI.csproj", "{C74F84C1-53C0-DB88-C0B7-142E4329C27D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C74F84C1-53C0-DB88-C0B7-142E4329C27D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74F84C1-53C0-DB88-C0B7-142E4329C27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74F84C1-53C0-DB88-C0B7-142E4329C27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74F84C1-53C0-DB88-C0B7-142E4329C27D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09D3183A-D8C6-4031-A4D6-99EF761D521A}
+	EndGlobalSection
+EndGlobal
